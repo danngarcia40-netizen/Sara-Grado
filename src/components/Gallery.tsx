@@ -19,6 +19,30 @@ export default function Gallery() {
 
   return (
     <section className="py-16 md:py-24 px-4 md:px-12 max-w-7xl mx-auto relative bg-texture">
+      
+      {/* Glamorous floating bokeh lights */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <motion.div
+          animate={{
+            x: [0, -40, 60, 0],
+            y: [0, 80, -120, 0],
+            scale: [1, 1.25, 0.85, 1],
+            opacity: [0.12, 0.3, 0.12],
+          }}
+          transition={{ duration: 16, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute top-[20%] right-[15%] w-36 h-36 rounded-full bg-gold/15 blur-2xl"
+        />
+        <motion.div
+          animate={{
+            x: [0, 70, -50, 0],
+            y: [0, -90, 60, 0],
+            scale: [1, 0.8, 1.15, 1],
+            opacity: [0.1, 0.25, 0.1],
+          }}
+          transition={{ duration: 20, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+          className="absolute top-[60%] left-[15%] w-44 h-44 rounded-full bg-medical/15 blur-3xl"
+        />
+      </div>
       <motion.div
         initial={{ opacity: 0, y: 30, scale: 0.95 }}
         whileInView={{ opacity: 1, y: 0, scale: 1 }}

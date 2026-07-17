@@ -48,7 +48,7 @@ export const CONFIG = {
   whatsappLink: "https://wa.me/573163321776?text=¡Hola!%20Confirmo%20mi%20asistencia%20a%20la%20graduación%20de%20Sara%20Lucía.",
   
   // URL de la música de fondo (MP3)
-  musicUrl: "https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=elegant-piano-111693.mp3",
+  musicUrl: "https://ccrma.stanford.edu/~jos/mp3/pno-cs.mp3",
   
   // ==========================================
   // IMÁGENES (Reemplazar con fotos reales)

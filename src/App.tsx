@@ -14,8 +14,19 @@ import MedicalArkanoid from './components/MedicalArkanoid';
 
 export default function App() {
   const [loading, setLoading] = useState(true);
-  const audioRef = useRef<HTMLAudioElement>(null);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
   const [isPlaying, setIsPlaying] = useState(false);
+
+  useEffect(() => {
+    const audio = new Audio(CONFIG.musicUrl);
+    audio.loop = true;
+    audio.volume = 0.2;
+    audioRef.current = audio;
+
+    return () => {
+      audio.pause();
+    };
+  }, []);
 
   // Scroll to top on refresh
   useEffect(() => {
@@ -44,7 +55,6 @@ export default function App() {
   return (
     <>
       <CustomCursor />
-      <audio ref={audioRef} src={CONFIG.musicUrl} loop />
       
       <AnimatePresence mode="wait">
         {loading ? (

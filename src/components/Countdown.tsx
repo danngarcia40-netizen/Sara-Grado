@@ -39,6 +39,40 @@ export default function Countdown() {
       {/* Background decoration */}
       <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10 pointer-events-none"></div>
       
+      {/* Glamorous floating bokeh lights */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <motion.div
+          animate={{
+            x: [0, 80, -40, 0],
+            y: [0, -100, 50, 0],
+            scale: [1, 1.3, 0.8, 1],
+            opacity: [0.15, 0.35, 0.15],
+          }}
+          transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute top-[10%] left-[20%] w-32 h-32 rounded-full bg-gold/15 blur-2xl"
+        />
+        <motion.div
+          animate={{
+            x: [0, -60, 50, 0],
+            y: [0, 120, -80, 0],
+            scale: [1, 0.7, 1.2, 1],
+            opacity: [0.1, 0.25, 0.1],
+          }}
+          transition={{ duration: 18, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+          className="absolute bottom-[15%] right-[25%] w-40 h-40 rounded-full bg-medical/15 blur-3xl"
+        />
+        <motion.div
+          animate={{
+            x: [0, 40, -40, 0],
+            y: [0, 80, -60, 0],
+            scale: [1, 1.2, 0.9, 1],
+            opacity: [0.08, 0.2, 0.08],
+          }}
+          transition={{ duration: 22, repeat: Infinity, ease: "easeInOut", delay: 4 }}
+          className="absolute top-[60%] left-[5%] w-24 h-24 rounded-full bg-gold/10 blur-xl"
+        />
+      </div>
+      
       {/* Animated floating stethoscope/pills vectors in background */}
       <motion.div
         animate={{ y: [0, -20, 0], rotate: [0, 15, -15, 0] }}

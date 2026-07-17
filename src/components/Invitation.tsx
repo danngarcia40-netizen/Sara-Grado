@@ -5,6 +5,30 @@ export default function Invitation() {
   return (
     <section className="py-20 px-4 relative flex flex-col items-center justify-center overflow-hidden bg-texture">
       
+      {/* Glamorous floating bokeh lights */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <motion.div
+          animate={{
+            x: [0, 50, -30, 0],
+            y: [0, -80, 40, 0],
+            scale: [1, 1.2, 0.9, 1],
+            opacity: [0.12, 0.28, 0.12],
+          }}
+          transition={{ duration: 14, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute top-[15%] left-[25%] w-32 h-32 rounded-full bg-gold/15 blur-2xl"
+        />
+        <motion.div
+          animate={{
+            x: [0, -40, 60, 0],
+            y: [0, 90, -70, 0],
+            scale: [1, 0.85, 1.1, 1],
+            opacity: [0.1, 0.22, 0.1],
+          }}
+          transition={{ duration: 19, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+          className="absolute bottom-[20%] right-[30%] w-36 h-36 rounded-full bg-medical/15 blur-3xl"
+        />
+      </div>
+      
       {/* Fun Medical Background Elements */}
       <motion.div
         animate={{ y: [0, -15, 0], rotate: [0, 10, -10, 0] }}
