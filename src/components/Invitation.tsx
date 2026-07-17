@@ -191,6 +191,101 @@ export default function Invitation() {
         </a>
       </motion.div>
 
+      {/* Inspirational Childhood Dream Card with Dra Juguetes and Sunflowers */}
+      <motion.div
+        initial={{ opacity: 0, y: 50, scale: 0.95 }}
+        whileInView={{ opacity: 1, y: 0, scale: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 1.2, type: "spring" }}
+        className="w-full max-w-2xl mx-auto mt-24 px-4 relative z-10"
+      >
+        {/* Floating Sunflowers around the Card */}
+        <div className="absolute -top-12 -left-8 w-20 h-20 pointer-events-none drop-shadow-lg select-none">
+          <motion.div
+            animate={{ rotate: 360, y: [0, -10, 0] }}
+            transition={{ rotate: { duration: 25, repeat: Infinity, ease: "linear" }, y: { duration: 4, repeat: Infinity, ease: "easeInOut" } }}
+          >
+            <svg viewBox="0 0 100 100" className="w-16 h-16">
+              <g transform="translate(50,50)">
+                {[...Array(12)].map((_, i) => (
+                  <path 
+                    key={i} 
+                    d="M 0 -12 C -6 -22 -10 -32 0 -40 C 10 -32 6 -22 0 -12" 
+                    fill="#FFD700" 
+                    stroke="#D4AF37"
+                    strokeWidth="1.5"
+                    transform={`rotate(${i * 30})`} 
+                  />
+                ))}
+                <circle cx="0" cy="0" r="13" fill="#4A2E1B" stroke="#D4AF37" strokeWidth="2" />
+                <circle cx="0" cy="0" r="9" fill="#2E1C10" />
+              </g>
+            </svg>
+          </motion.div>
+        </div>
+
+        <div className="absolute -bottom-8 -right-8 w-24 h-24 pointer-events-none drop-shadow-xl select-none">
+          <motion.div
+            animate={{ rotate: -360, y: [0, 10, 0] }}
+            transition={{ rotate: { duration: 30, repeat: Infinity, ease: "linear" }, y: { duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 } }}
+          >
+            <svg viewBox="0 0 100 100" className="w-20 h-20">
+              <g transform="translate(50,50)">
+                {[...Array(12)].map((_, i) => (
+                  <path 
+                    key={i} 
+                    d="M 0 -12 C -6 -22 -10 -32 0 -40 C 10 -32 6 -22 0 -12" 
+                    fill="#FFD700" 
+                    stroke="#D4AF37"
+                    strokeWidth="1.5"
+                    transform={`rotate(${i * 30})`} 
+                  />
+                ))}
+                <circle cx="0" cy="0" r="13" fill="#4A2E1B" stroke="#D4AF37" strokeWidth="2" />
+                <circle cx="0" cy="0" r="9" fill="#2E1C10" />
+              </g>
+            </svg>
+          </motion.div>
+        </div>
+
+        {/* Card content with rainbow color changing glow */}
+        <div className="relative rounded-3xl overflow-hidden bg-gradient-to-b from-white/95 to-white/70 backdrop-blur-xl border border-white/80 p-8 md:p-12 shadow-[0_20px_50px_rgba(212,175,55,0.12)] text-center group">
+          {/* Animated color shifting glow border effect */}
+          <div className="absolute inset-0 bg-gradient-to-r from-medical/10 via-gold/10 to-pink-300/10 opacity-60 pointer-events-none animate-[pulse_6s_infinite_alternate]" />
+          
+          <span className="font-sans text-xs tracking-[0.3em] text-medical uppercase font-bold block mb-3">La Inspiración Detrás del Sueño</span>
+          
+          {/* Polaroid style beautifully integrated image */}
+          <div className="relative w-48 md:w-56 mx-auto mb-8 bg-white p-3 rounded-xl shadow-xl border border-gray-100 transform -rotate-2 hover:rotate-0 hover:scale-105 transition-all duration-500 cursor-pointer">
+            <img 
+              src="https://es.web.img2.acsta.net/c_310_420/pictures/14/03/06/11/41/025077.jpg" 
+              alt="Dra Juguetes Inspiración" 
+              className="w-full h-auto rounded-lg object-cover aspect-[3/4]"
+            />
+            {/* Little cute gold flower pin/tape effect at the top */}
+            <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-gold/90 text-white font-sans text-[8px] tracking-widest uppercase px-3 py-1 rounded shadow-sm flex items-center gap-1 font-semibold">
+              <span className="animate-pulse">★</span> Con Amor <span>★</span>
+            </div>
+          </div>
+
+          <h3 className="font-script text-4xl md:text-5xl text-glow-gold text-gold mb-4 leading-normal font-medium">
+            "Donde todo comenzó..."
+          </h3>
+          
+          <p className="font-sans text-gray-600 text-sm md:text-base leading-relaxed max-w-md mx-auto italic">
+            "Desde pequeña, sanando juguetes con amor e ilusión; hoy, lista para cuidar vidas con todo el conocimiento y el corazón."
+          </p>
+
+          <div className="flex justify-center items-center gap-2 mt-6 text-medical/40">
+            <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+            <span className="h-[1px] w-12 bg-gray-200"></span>
+            <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2v20m10-10H2"/></svg>
+            <span className="h-[1px] w-12 bg-gray-200"></span>
+            <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+          </div>
+        </div>
+      </motion.div>
+
     </section>
   );
 }

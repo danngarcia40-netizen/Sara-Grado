@@ -78,18 +78,47 @@ export default function Hero() {
           className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 cursor-pointer"
           onClick={() => window.scrollTo({ top: window.innerHeight, behavior: 'smooth' })}
         >
-          <img 
-            src="https://i.pinimg.com/originals/30/8a/be/308abe81c5d0ba92120e2908f902dc67.png" 
-            alt="Dra Juguetes" 
-            className="w-16 md:w-20 h-auto opacity-80 hover:opacity-100 transition-opacity drop-shadow-lg"
-            onError={(e) => {
-              (e.target as HTMLImageElement).src = 'https://m.media-amazon.com/images/I/71rB58hP0FL._AC_SL1500_.jpg';
+          <motion.div
+            animate={{ 
+              y: [0, 8, 0],
+              rotate: [0, 10, -10, 0]
             }}
-          />
+            transition={{ 
+              repeat: Infinity, 
+              duration: 3, 
+              ease: "easeInOut" 
+            }}
+            className="w-14 h-14 flex items-center justify-center drop-shadow-[0_0_12px_rgba(255,215,0,0.4)]"
+          >
+            <svg viewBox="0 0 100 100" className="w-12 h-12">
+              <g transform="translate(50,50)">
+                {/* Petals */}
+                {[...Array(12)].map((_, i) => (
+                  <path 
+                    key={i} 
+                    d="M 0 -12 C -6 -22 -10 -32 0 -40 C 10 -32 6 -22 0 -12" 
+                    fill="#FFD700" 
+                    stroke="#D4AF37"
+                    strokeWidth="1.5"
+                    transform={`rotate(${i * 30})`} 
+                  />
+                ))}
+                {/* Center */}
+                <circle cx="0" cy="0" r="13" fill="#4A2E1B" stroke="#D4AF37" strokeWidth="2" />
+                <circle cx="0" cy="0" r="9" fill="#2E1C10" />
+                {/* Seeds texture dots */}
+                <circle cx="-3" cy="-3" r="1.5" fill="#E5A93C" opacity="0.7" />
+                <circle cx="3" cy="3" r="1.5" fill="#E5A93C" opacity="0.7" />
+                <circle cx="4" cy="-2" r="1" fill="#E5A93C" opacity="0.6" />
+                <circle cx="-2" cy="4" r="1" fill="#E5A93C" opacity="0.6" />
+              </g>
+            </svg>
+          </motion.div>
+          <span className="font-sans text-white/70 text-[10px] tracking-[0.2em] uppercase font-medium mt-1">Deslizar</span>
           <motion.div 
-            animate={{ y: [0, 10, 0] }} 
+            animate={{ y: [0, 8, 0] }} 
             transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
-            className="w-[1px] h-8 bg-gradient-to-b from-white/60 to-transparent mt-2"
+            className="w-[1px] h-6 bg-gradient-to-b from-gold to-transparent mt-1"
           />
         </motion.div>
       </motion.div>

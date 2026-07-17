@@ -329,7 +329,7 @@ export default function MedicalArkanoid() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="absolute inset-0 bg-white/60 backdrop-blur-md flex flex-col items-center justify-center z-10"
+              className="absolute inset-0 bg-white/70 backdrop-blur-md flex flex-col items-center justify-center z-10"
             >
               {gameOver && (
                 <div className="text-center mb-6">
@@ -338,18 +338,30 @@ export default function MedicalArkanoid() {
                 </div>
               )}
               {win && (
-                <div className="text-center mb-6 flex flex-col items-center">
-                  <motion.img 
+                <div className="text-center mb-6 flex flex-col items-center px-4">
+                  <motion.div
                     initial={{ scale: 0, rotate: -180 }}
-                    animate={{ scale: 1, rotate: 0 }}
-                    transition={{ type: "spring", bounce: 0.5 }}
-                    src="https://i.pinimg.com/originals/30/8a/be/308abe81c5d0ba92120e2908f902dc67.png" 
-                    alt="Dra Juguetes"
-                    className="w-48 h-auto object-contain mx-auto mb-4 drop-shadow-2xl"
-                    onError={(e) => {
-                      (e.target as HTMLImageElement).src = 'https://m.media-amazon.com/images/I/71rB58hP0FL._AC_SL1500_.jpg';
-                    }}
-                  />
+                    animate={{ scale: 1, rotate: 360 }}
+                    transition={{ type: "spring", stiffness: 80, damping: 15 }}
+                    className="w-28 h-28 mb-4 flex items-center justify-center drop-shadow-[0_0_15px_rgba(255,215,0,0.5)]"
+                  >
+                    <svg viewBox="0 0 100 100" className="w-24 h-24 animate-[spin_20s_linear_infinite]">
+                      <g transform="translate(50,50)">
+                        {[...Array(12)].map((_, i) => (
+                          <path 
+                            key={i} 
+                            d="M 0 -12 C -6 -22 -10 -32 0 -40 C 10 -32 6 -22 0 -12" 
+                            fill="#FFD700" 
+                            stroke="#D4AF37"
+                            strokeWidth="1.5"
+                            transform={`rotate(${i * 30})`} 
+                          />
+                        ))}
+                        <circle cx="0" cy="0" r="13" fill="#4A2E1B" stroke="#D4AF37" strokeWidth="2" />
+                        <circle cx="0" cy="0" r="9" fill="#2E1C10" />
+                      </g>
+                    </svg>
+                  </motion.div>
                   <h3 className="font-script text-6xl text-gold mb-2">¡Excelente!</h3>
                   <p className="text-medical font-sans tracking-widest uppercase text-sm font-semibold mb-6">Paciente libre de virus.</p>
                   
@@ -388,6 +400,45 @@ export default function MedicalArkanoid() {
           )}
         </AnimatePresence>
       </motion.div>
+
+      {/* On-screen controls for mobile/tablet gameplay */}
+      <div className="flex justify-center items-center gap-6 mt-6 w-full max-w-[600px] select-none px-4">
+        <button
+          type="button"
+          onTouchStart={(e) => { e.preventDefault(); gameState.current.leftPressed = true; }}
+          onTouchEnd={(e) => { e.preventDefault(); gameState.current.leftPressed = false; }}
+          onTouchCancel={(e) => { e.preventDefault(); gameState.current.leftPressed = false; }}
+          onMouseDown={(e) => { e.preventDefault(); gameState.current.leftPressed = true; }}
+          onMouseUp={(e) => { e.preventDefault(); gameState.current.leftPressed = false; }}
+          onMouseLeave={(e) => { e.preventDefault(); gameState.current.leftPressed = false; }}
+          className="flex-1 max-w-[160px] h-14 bg-gradient-to-r from-medical to-[#1f5e42] text-white rounded-full flex items-center justify-center border-2 border-white/50 shadow-md active:scale-95 hover:shadow-lg transition-all text-xs tracking-widest uppercase font-semibold gap-1 select-none cursor-pointer"
+        >
+          <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+          </svg>
+          Izquierda
+        </button>
+
+        <span className="text-[10px] font-sans text-gray-400 uppercase tracking-widest font-semibold text-center hidden sm:inline-block">
+          Usa los botones o desliza el dedo
+        </span>
+
+        <button
+          type="button"
+          onTouchStart={(e) => { e.preventDefault(); gameState.current.rightPressed = true; }}
+          onTouchEnd={(e) => { e.preventDefault(); gameState.current.rightPressed = false; }}
+          onTouchCancel={(e) => { e.preventDefault(); gameState.current.rightPressed = false; }}
+          onMouseDown={(e) => { e.preventDefault(); gameState.current.rightPressed = true; }}
+          onMouseUp={(e) => { e.preventDefault(); gameState.current.rightPressed = false; }}
+          onMouseLeave={(e) => { e.preventDefault(); gameState.current.rightPressed = false; }}
+          className="flex-1 max-w-[160px] h-14 bg-gradient-to-r from-gold to-[#bfa030] text-white rounded-full flex items-center justify-center border-2 border-white/50 shadow-md active:scale-95 hover:shadow-lg transition-all text-xs tracking-widest uppercase font-semibold gap-1 select-none cursor-pointer"
+        >
+          Derecha
+          <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+          </svg>
+        </button>
+      </div>
     </section>
   );
 }
