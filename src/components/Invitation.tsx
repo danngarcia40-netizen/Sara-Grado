@@ -5,6 +5,49 @@ export default function Invitation() {
   return (
     <section className="py-20 px-4 relative flex flex-col items-center justify-center overflow-hidden bg-texture">
       
+      {/* Fun Medical Background Elements */}
+      <motion.div
+        animate={{ y: [0, -15, 0], rotate: [0, 10, -10, 0] }}
+        transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute top-24 left-4 md:left-12 text-medical/10 pointer-events-none hidden sm:block"
+      >
+        {/* Stethoscope SVG */}
+        <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2">
+          <path d="M4.5 16.5c-1.5 1.26-2.5 3.19-2.5 5.5h14c0-2.31-1-4.24-2.5-5.5" />
+          <path d="M12 2v10a4 4 0 0 0 8 0V2" />
+          <path d="M12 6h8" />
+          <circle cx="6" cy="11" r="3" />
+          <path d="M6 14v2.5" />
+        </svg>
+      </motion.div>
+
+      <motion.div
+        animate={{ y: [0, 15, 0], rotate: [0, -15, 15, 0] }}
+        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute top-1/2 right-4 md:right-12 text-gold/15 pointer-events-none hidden sm:block"
+      >
+        {/* DNA/Double Helix / Sparkles */}
+        <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2">
+          <path d="M4.5 10.5C4.5 5.25 12 3 12 3s7.5 2.25 7.5 7.5c0 5.25-7.5 10.5-7.5 10.5s-7.5-5.25-7.5-10.5Z" />
+          <path d="M12 3v18" />
+          <path d="M8 8h8" />
+          <path d="M6.5 13h11" />
+          <path d="M8 18h8" />
+        </svg>
+      </motion.div>
+
+      <motion.div
+        animate={{ scale: [1, 1.1, 1], rotate: [0, 45, 0] }}
+        transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute bottom-32 left-8 text-gold/10 pointer-events-none hidden md:block"
+      >
+        {/* Doctor Cap / Graduation Cap */}
+        <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2">
+          <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
+          <path d="M6 12v5c0 2 2 3 6 3s6-1 6-3v-5" />
+        </svg>
+      </motion.div>
+
       {/* Premium Card */}
       <motion.div
         initial={{ opacity: 0, y: 50 }}

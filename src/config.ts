@@ -18,7 +18,7 @@ export const CONFIG = {
   displayTime: "4:00 PM",
   
   parents: {
-    father: "Waymar Muñoz",
+    father: "Weymar Muñoz",
     mother: "Enelia Damián"
   },
   

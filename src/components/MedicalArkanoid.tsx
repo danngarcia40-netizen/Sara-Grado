@@ -83,13 +83,13 @@ export default function MedicalArkanoid() {
     
     // Draw a capsule (pill) like paddle
     ctx.beginPath();
-    ctx.roundRect(paddleX, canvas.height - paddleHeight - 15, paddleWidth / 2, paddleHeight, { tl: 10, bl: 10, tr: 0, br: 0 });
+    ctx.roundRect(paddleX, canvas.height - paddleHeight - 15, paddleWidth / 2, paddleHeight, [10, 0, 0, 10]);
     ctx.fillStyle = "#2E7D5A"; // Medical Green side
     ctx.fill();
     ctx.closePath();
 
     ctx.beginPath();
-    ctx.roundRect(paddleX + paddleWidth / 2, canvas.height - paddleHeight - 15, paddleWidth / 2, paddleHeight, { tl: 0, bl: 0, tr: 10, br: 10 });
+    ctx.roundRect(paddleX + paddleWidth / 2, canvas.height - paddleHeight - 15, paddleWidth / 2, paddleHeight, [0, 10, 10, 0]);
     ctx.fillStyle = "#FFFFFF"; // White side
     ctx.fill();
     ctx.closePath();

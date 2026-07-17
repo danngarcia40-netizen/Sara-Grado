@@ -24,7 +24,7 @@ export default function App() {
 
   const handleStartMusic = () => {
     if (audioRef.current) {
-      audioRef.current.volume = 0.4;
+      audioRef.current.volume = 0.2;
       audioRef.current.play().then(() => setIsPlaying(true)).catch(console.error);
     }
   };
@@ -35,6 +35,7 @@ export default function App() {
         audioRef.current.pause();
         setIsPlaying(false);
       } else {
+        audioRef.current.volume = 0.2;
         audioRef.current.play().then(() => setIsPlaying(true)).catch(console.error);
       }
     }

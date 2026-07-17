@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 
-export default function Preloader({ onComplete, onStartMusic }: { onComplete: () => void, onStartMusic: () => void }) {
+export default function Preloader({ onComplete, onStartMusic }: { onComplete: () => void, onStartMusic: () => void, key?: string }) {
   const [showButton, setShowButton] = useState(false);
   const [isExiting, setIsExiting] = useState(false);
 
