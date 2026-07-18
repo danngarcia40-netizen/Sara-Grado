@@ -28,15 +28,15 @@ export default function App() {
     const handleUserInteractionFallback = () => {
       if (hasInteracted.current) return;
       if (audioRef.current && !isPlaying) {
-        audioRef.current.load();
+        hasInteracted.current = true; // Set synchronously to prevent race conditions from overlapping touch/click events
         audioRef.current.play()
           .then(() => {
             setIsPlaying(true);
-            hasInteracted.current = true;
             removeListeners();
           })
-          .catch(() => {
-            // Still locked or not loaded, will retry on next touch or manual click
+          .catch((err) => {
+            console.log("Fallback play failed, resetting flag:", err);
+            hasInteracted.current = false; // Reset to allow subsequent attempts
           });
       }
     };
@@ -56,14 +56,23 @@ export default function App() {
 
   const handleStartMusic = () => {
     if (audioRef.current) {
-      hasInteracted.current = true; // Mark as interacted since we clicked the enter button
-      audioRef.current.load(); // Force load inside synchronous gesture block
+      hasInteracted.current = true; // Mark as interacted synchronously
       audioRef.current.play()
         .then(() => {
           setIsPlaying(true);
         })
         .catch(err => {
-          console.log("Reproducción automática de música bloqueada por el navegador:", err);
+          console.log("Direct play failed, trying load() fallback:", err);
+          if (audioRef.current) {
+            audioRef.current.load();
+            audioRef.current.play()
+              .then(() => {
+                setIsPlaying(true);
+              })
+              .catch(retryErr => {
+                console.log("Reproducción automática de música bloqueada por el navegador:", retryErr);
+              });
+          }
         });
     }
   };

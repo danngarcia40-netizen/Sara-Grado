@@ -49,7 +49,7 @@ export const CONFIG = {
   whatsappLink: "https://wa.me/573163321776?text=¡Hola!%20Confirmo%20mi%20asistencia%20a%20la%20graduación%20de%20Sara%20Lucía.",
   
   // URL de la música de fondo (MP3)
-  musicUrl: "https://storage.googleapis.com/resources_bk1_public/DANN/sara/Feid,%20ATL%20Jacob%20-%20Luna%20(InstrumentalKaraokePista)%20ORIGINAL.mp3",
+  musicUrl: "/music.mp3",
   
   // ==========================================
   // IMÁGENES (Reemplazar con fotos reales)
