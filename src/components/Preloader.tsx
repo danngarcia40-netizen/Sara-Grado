@@ -60,21 +60,24 @@ export default function Preloader({ onComplete, onStartMusic }: { onComplete: ()
 
           <AnimatePresence>
             {showButton && (
-              <motion.button
+              <motion.div
                 initial={{ opacity: 0, y: 30, scale: 0.9 }}
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 exit={{ opacity: 0, y: -20, scale: 0.9 }}
                 transition={{ duration: 0.8, type: "spring" }}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={handleEnter}
-                className="mt-16 px-10 py-4 rounded-full border border-white/20 text-white font-sans tracking-[0.3em] text-sm font-semibold uppercase hover:bg-white hover:text-medical hover:shadow-[0_0_30px_rgba(255,255,255,0.5)] transition-all duration-500 flex flex-col items-center gap-2"
+                className="mt-16"
               >
-                <span>Ingresar</span>
-                <span className="font-script text-2xl normal-case tracking-normal text-gold opacity-80 mt-1">
-                  a la celebración
-                </span>
-              </motion.button>
+                <button
+                  type="button"
+                  onClick={handleEnter}
+                  className="px-10 py-4 rounded-full border border-white/20 text-white font-sans tracking-[0.3em] text-sm font-semibold uppercase hover:bg-white hover:text-medical hover:shadow-[0_0_30px_rgba(255,255,255,0.5)] transition-all duration-500 flex flex-col items-center gap-2 transform active:scale-95 hover:scale-105 cursor-pointer"
+                >
+                  <span>Ingresar</span>
+                  <span className="font-script text-2xl normal-case tracking-normal text-gold opacity-80 mt-1">
+                    a la celebración
+                  </span>
+                </button>
+              </motion.div>
             )}
           </AnimatePresence>
         </motion.div>

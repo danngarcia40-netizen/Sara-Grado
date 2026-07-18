@@ -16,21 +16,54 @@ export default function App() {
   const [loading, setLoading] = useState(true);
   const [isPlaying, setIsPlaying] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
+  const hasInteracted = useRef(false);
 
   // Scroll to top on refresh
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
+  // Fallback to start music on first user touch/click anywhere on screen
+  useEffect(() => {
+    const handleUserInteractionFallback = () => {
+      if (hasInteracted.current) return;
+      if (audioRef.current && !isPlaying) {
+        audioRef.current.load();
+        audioRef.current.play()
+          .then(() => {
+            setIsPlaying(true);
+            hasInteracted.current = true;
+            removeListeners();
+          })
+          .catch(() => {
+            // Still locked or not loaded, will retry on next touch or manual click
+          });
+      }
+    };
+
+    const removeListeners = () => {
+      document.removeEventListener('click', handleUserInteractionFallback);
+      document.removeEventListener('touchstart', handleUserInteractionFallback);
+    };
+
+    document.addEventListener('click', handleUserInteractionFallback);
+    document.addEventListener('touchstart', handleUserInteractionFallback);
+
+    return () => {
+      removeListeners();
+    };
+  }, [isPlaying]);
+
   const handleStartMusic = () => {
     if (audioRef.current) {
+      hasInteracted.current = true; // Mark as interacted since we clicked the enter button
+      audioRef.current.load(); // Force load inside synchronous gesture block
       audioRef.current.play()
         .then(() => {
           setIsPlaying(true);
         })
         .catch(err => {
           console.log("Reproducción automática de música bloqueada por el navegador:", err);
-          // On some devices, retry playing or keep isPlaying false till they tap the sunflower
         });
     }
   };
@@ -39,10 +72,10 @@ export default function App() {
     <>
       <CustomCursor />
       
-      {/* Root-level Audio element to allow synchronous unlocking on mobile via Preloader click */}
+      {/* Root-level Audio element using relative path to resolve correctly on root-level (Vercel) & subfolders (GitHub Pages) */}
       <audio
         ref={audioRef}
-        src="/music.mp3"
+        src="music.mp3"
         loop
         preload="auto"
         onPlay={() => setIsPlaying(true)}
