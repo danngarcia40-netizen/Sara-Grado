@@ -72,10 +72,10 @@ export default function App() {
     <>
       <CustomCursor />
       
-      {/* Root-level Audio element using relative path to resolve correctly on root-level (Vercel) & subfolders (GitHub Pages) */}
+      {/* Root-level Audio element using absolute path from config */}
       <audio
         ref={audioRef}
-        src="music.mp3"
+        src={CONFIG.musicUrl}
         loop
         preload="auto"
         onPlay={() => setIsPlaying(true)}
