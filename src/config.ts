@@ -62,6 +62,7 @@ export const CONFIG = {
     "https://lh3.googleusercontent.com/d/1-zhNxMGCbSMsh-kn-C6iOnHJXVe5YZKr",
     "https://lh3.googleusercontent.com/d/1VAvPap7oqNQKllnsxqQ_qyoS5OzuRbmG",
     "https://lh3.googleusercontent.com/d/1CtBecYRbq1lLctZ1phWPzm-0peI-ydEJ",
+    "https://lh3.googleusercontent.com/d/1SqU8KTLXDE-Wo8EXTc27uX17CWnG6qQ4",
     "https://lh3.googleusercontent.com/d/1pdhj5ljbnEQrXfdgzwIZ9_4Q9RfMSkZf"
   ],
 
