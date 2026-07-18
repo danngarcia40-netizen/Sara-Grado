@@ -1,11 +1,15 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useEffect, RefObject } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Play, Pause } from 'lucide-react';
 
-export default function MusicPlayer() {
-  const [isPlaying, setIsPlaying] = useState(false);
+interface MusicPlayerProps {
+  isPlaying: boolean;
+  setIsPlaying: (playing: boolean) => void;
+  audioRef: RefObject<HTMLAudioElement | null>;
+}
+
+export default function MusicPlayer({ isPlaying, setIsPlaying, audioRef }: MusicPlayerProps) {
   const [showTooltip, setShowTooltip] = useState(true);
-  const audioRef = useRef<HTMLAudioElement | null>(null);
 
   // Auto-hide tooltip after 6 seconds if playing
   useEffect(() => {
@@ -29,7 +33,18 @@ export default function MusicPlayer() {
             setShowTooltip(false);
           })
           .catch((err) => {
-            console.log("Reproducción automática bloqueada o fallida:", err);
+            console.log("Reproducción automática bloqueada o fallida, reintentando con load:", err);
+            if (audioRef.current) {
+              audioRef.current.load();
+              audioRef.current.play()
+                .then(() => {
+                  setIsPlaying(true);
+                  setShowTooltip(false);
+                })
+                .catch((retryErr) => {
+                  console.error("Reintento de reproducción fallido:", retryErr);
+                });
+            }
           });
       }
     }
@@ -37,15 +52,7 @@ export default function MusicPlayer() {
 
   return (
     <div className="fixed bottom-6 right-6 z-[999] flex items-center gap-3">
-      {/* Hidden Audio Element with local static file */}
-      <audio
-        ref={audioRef}
-        src="/music.mp3"
-        loop
-        preload="auto"
-        onPlay={() => setIsPlaying(true)}
-        onPause={() => setIsPlaying(false)}
-      />
+
 
       {/* Elegant Left-Pointing Tooltip */}
       <AnimatePresence>
@@ -65,16 +72,14 @@ export default function MusicPlayer() {
       </AnimatePresence>
 
       {/* Sunflower Button */}
-      <motion.button
+      <button
         type="button"
         onClick={handlePlayPause}
         onMouseEnter={() => setShowTooltip(true)}
         onMouseLeave={() => {
           if (isPlaying) setShowTooltip(false);
         }}
-        whileHover={{ scale: 1.08 }}
-        whileTap={{ scale: 0.92 }}
-        className="relative w-14 h-14 md:w-16 md:h-16 flex items-center justify-center rounded-full focus:outline-none drop-shadow-[0_4px_10px_rgba(212,175,55,0.35)] cursor-pointer group"
+        className="relative w-14 h-14 md:w-16 md:h-16 flex items-center justify-center rounded-full focus:outline-none drop-shadow-[0_4px_10px_rgba(212,175,55,0.35)] cursor-pointer group transition-all duration-300 hover:scale-105 active:scale-95"
         title={isPlaying ? "Pausar música" : "Escuchar música"}
       >
         {/* Soft Golden Pulsing Ambient Halo (Only when paused to invite clicks) */}
@@ -137,7 +142,7 @@ export default function MusicPlayer() {
             <span className="w-[2px] h-1.5 bg-white rounded-full animate-wave-3" />
           </div>
         )}
-      </motion.button>
+      </button>
     </div>
   );
 }

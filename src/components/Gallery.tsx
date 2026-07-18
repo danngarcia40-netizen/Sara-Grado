@@ -78,6 +78,7 @@ export default function Gallery() {
                 src={src} 
                 alt={`Galería ${index + 1}`} 
                 className="w-full h-full object-cover"
+                referrerPolicy="no-referrer"
               />
             </div>
             {/* Overlay */}
@@ -119,6 +120,7 @@ export default function Gallery() {
               src={selectedImage}
               alt="Pantalla completa"
               className="max-w-full max-h-[90vh] object-contain shadow-2xl"
+              referrerPolicy="no-referrer"
               onClick={(e) => e.stopPropagation()}
             />
           </motion.div>

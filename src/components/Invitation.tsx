@@ -1,7 +1,9 @@
+import { useState } from 'react';
 import { motion } from 'motion/react';
 import { CONFIG } from '../config';
 
 export default function Invitation() {
+  const [parentsPhotoError, setParentsPhotoError] = useState(false);
   return (
     <section className="py-20 px-4 relative flex flex-col items-center justify-center overflow-hidden bg-texture">
       
@@ -105,17 +107,27 @@ export default function Invitation() {
                 whileInView={{ scale: 1, opacity: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 1.2, type: "spring", bounce: 0.3 }}
-                className="relative w-36 h-36 md:w-44 md:h-44 rounded-full overflow-hidden border-4 border-gold shadow-[0_15px_35px_rgba(212,175,55,0.3)] group z-10"
+                className="relative w-36 h-36 md:w-44 md:h-44 rounded-full overflow-hidden border-4 border-gold shadow-[0_15px_35px_rgba(212,175,55,0.3)] group z-10 bg-white/80"
               >
-                <img 
-                  src={CONFIG.parents.photo} 
-                  alt="Padres de Sara Lucía" 
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                  onError={(e) => {
-                    e.currentTarget.style.display = 'none';
-                  }}
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-medical/30 via-transparent to-transparent pointer-events-none opacity-60" />
+                {!parentsPhotoError ? (
+                  <img 
+                    src={CONFIG.parents.photo} 
+                    alt="Padres de Sara Lucía" 
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    referrerPolicy="no-referrer"
+                    onError={() => {
+                      setParentsPhotoError(true);
+                    }}
+                  />
+                ) : (
+                  <div className="w-full h-full bg-gradient-to-tr from-gold/15 via-white to-medical/15 flex flex-col items-center justify-center p-4">
+                    <svg className="w-12 h-12 md:w-14 md:h-14 text-gold animate-pulse mb-1" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                    </svg>
+                    <span className="text-[10px] font-sans font-bold uppercase tracking-wider text-medical/80">Con Amor</span>
+                  </div>
+                )}
+                <div className="absolute inset-0 bg-gradient-to-t from-medical/20 via-transparent to-transparent pointer-events-none opacity-60" />
               </motion.div>
 
               {/* Floating micro sunflower accents */}
@@ -320,6 +332,7 @@ export default function Invitation() {
               src="https://es.web.img2.acsta.net/c_310_420/pictures/14/03/06/11/41/025077.jpg" 
               alt="Dra Juguetes Inspiración" 
               className="w-full h-auto rounded-lg object-cover aspect-[3/4]"
+              referrerPolicy="no-referrer"
             />
             {/* Little cute gold flower pin/tape effect at the top */}
             <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-gold/90 text-white font-sans text-[8px] tracking-widest uppercase px-3 py-1 rounded shadow-sm flex items-center gap-1 font-semibold">

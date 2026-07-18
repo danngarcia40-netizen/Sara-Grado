@@ -20,7 +20,7 @@ export const CONFIG = {
   parents: {
     father: "Weymar Muñoz",
     mother: "Enelia Damián",
-    photo: "https://lh3.googleusercontent.com/d/1SqU8KTLXDE-Wo8EXTc27uX17CWnG6qQ4"
+    photo: "https://lh3.googleusercontent.com/d/1xbrlnV2kss8RoJVij2sXPCBDiRA4VTeR"
   },
   
   location: {

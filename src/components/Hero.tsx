@@ -24,6 +24,7 @@ export default function Hero() {
           src={CONFIG.heroImage} 
           alt="Sara Lucía Muñoz Damián" 
           className="w-full h-full object-cover"
+          referrerPolicy="no-referrer"
         />
       </motion.div>
 
