@@ -93,6 +93,65 @@ export default function Invitation() {
           </div>
           
           {/* Parents Block */}
+          {CONFIG.parents.photo && (
+            <div className="relative w-44 h-44 md:w-52 md:h-52 mx-auto mb-8 flex items-center justify-center">
+              {/* Spinning decorative sunflower ring */}
+              <div className="absolute inset-0 rounded-full border border-dashed border-gold/40 animate-[spin_40s_linear_infinite]" />
+              {/* Soft decorative background glow */}
+              <div className="absolute inset-2 bg-gradient-to-tr from-medical/10 to-gold/10 rounded-full blur-xl animate-pulse" />
+              
+              <motion.div 
+                initial={{ scale: 0.9, opacity: 0 }}
+                whileInView={{ scale: 1, opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 1.2, type: "spring", bounce: 0.3 }}
+                className="relative w-36 h-36 md:w-44 md:h-44 rounded-full overflow-hidden border-4 border-gold shadow-[0_15px_35px_rgba(212,175,55,0.3)] group z-10"
+              >
+                <img 
+                  src={CONFIG.parents.photo} 
+                  alt="Padres de Sara Lucía" 
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  onError={(e) => {
+                    e.currentTarget.style.display = 'none';
+                  }}
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-medical/30 via-transparent to-transparent pointer-events-none opacity-60" />
+              </motion.div>
+
+              {/* Floating micro sunflower accents */}
+              <div className="absolute -top-2 -right-2 w-8 h-8 pointer-events-none drop-shadow-md select-none">
+                <svg viewBox="0 0 100 100" className="w-full h-full">
+                  <g transform="translate(50,50)">
+                    {[...Array(8)].map((_, i) => (
+                      <path 
+                        key={i} 
+                        d="M 0 -12 C -6 -22 -10 -32 0 -40 C 10 -32 6 -22 0 -12" 
+                        fill="#FFD700" 
+                        transform={`rotate(${i * 45})`} 
+                      />
+                    ))}
+                    <circle cx="0" cy="0" r="13" fill="#4A2E1B" />
+                  </g>
+                </svg>
+              </div>
+              <div className="absolute -bottom-2 -left-2 w-8 h-8 pointer-events-none drop-shadow-md select-none">
+                <svg viewBox="0 0 100 100" className="w-full h-full">
+                  <g transform="translate(50,50)">
+                    {[...Array(8)].map((_, i) => (
+                      <path 
+                        key={i} 
+                        d="M 0 -12 C -6 -22 -10 -32 0 -40 C 10 -32 6 -22 0 -12" 
+                        fill="#FFD700" 
+                        transform={`rotate(${i * 45})`} 
+                      />
+                    ))}
+                    <circle cx="0" cy="0" r="13" fill="#4A2E1B" />
+                  </g>
+                </svg>
+              </div>
+            </div>
+          )}
+
           <p className="font-sans text-lg md:text-xl text-gray-700 italic mb-2 text-center">
             {CONFIG.parents.father} <span className="font-sans text-sm mx-2 not-italic font-bold text-medical">&</span> {CONFIG.parents.mother}
           </p>

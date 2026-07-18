@@ -14,19 +14,6 @@ import MedicalArkanoid from './components/MedicalArkanoid';
 
 export default function App() {
   const [loading, setLoading] = useState(true);
-  const audioRef = useRef<HTMLAudioElement | null>(null);
-  const [isPlaying, setIsPlaying] = useState(false);
-
-  useEffect(() => {
-    const audio = new Audio(CONFIG.musicUrl);
-    audio.loop = true;
-    audio.volume = 0.2;
-    audioRef.current = audio;
-
-    return () => {
-      audio.pause();
-    };
-  }, []);
 
   // Scroll to top on refresh
   useEffect(() => {
@@ -34,22 +21,7 @@ export default function App() {
   }, []);
 
   const handleStartMusic = () => {
-    if (audioRef.current) {
-      audioRef.current.volume = 0.2;
-      audioRef.current.play().then(() => setIsPlaying(true)).catch(console.error);
-    }
-  };
-
-  const toggleMusic = () => {
-    if (audioRef.current) {
-      if (isPlaying) {
-        audioRef.current.pause();
-        setIsPlaying(false);
-      } else {
-        audioRef.current.volume = 0.2;
-        audioRef.current.play().then(() => setIsPlaying(true)).catch(console.error);
-      }
-    }
+    // Self-contained YouTube player does not require manual audio trigger
   };
 
   return (
@@ -68,7 +40,7 @@ export default function App() {
             className="bg-texture min-h-screen"
           >
             <MedicalIcons />
-            <MusicPlayer isPlaying={isPlaying} togglePlay={toggleMusic} />
+            <MusicPlayer />
             
             <Hero />
             <Quote />

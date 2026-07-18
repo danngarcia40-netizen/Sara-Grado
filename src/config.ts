@@ -19,7 +19,8 @@ export const CONFIG = {
   
   parents: {
     father: "Weymar Muñoz",
-    mother: "Enelia Damián"
+    mother: "Enelia Damián",
+    photo: "https://lh3.googleusercontent.com/d/1SqU8KTLXDE-Wo8EXTc27uX17CWnG6qQ4"
   },
   
   location: {
@@ -58,11 +59,11 @@ export const CONFIG = {
   
   // Imágenes de la galería editorial (4 imágenes recomendadas)
   galleryImages: [
-    "https://storage.googleapis.com/resources_bk1_public/DANN/sara/Ah%C3%AD%20te%20voy%20Cobos%20%F0%9F%99%88%20(1).jpg",
-    "https://storage.googleapis.com/resources_bk1_public/DANN/sara/Ah%C3%AD%20te%20voy%20Cobos%20%F0%9F%99%88%20(2).jpg",
-    "https://storage.googleapis.com/resources_bk1_public/DANN/sara/Ah%C3%AD%20te%20voy%20Cobos%20%F0%9F%99%88%20(3).jpg",
-    "https://storage.googleapis.com/resources_bk1_public/DANN/sara/Ah%C3%AD%20te%20voy%20Cobos%20%F0%9F%99%88%20(4).jpg",
-    "https://storage.googleapis.com/resources_bk1_public/DANN/sara/Ah%C3%AD%20te%20voy%20Cobos%20%F0%9F%99%88%20(5).jpg"
+    "https://lh3.googleusercontent.com/d/1-zhNxMGCbSMsh-kn-C6iOnHJXVe5YZKr",
+    "https://lh3.googleusercontent.com/d/1VAvPap7oqNQKllnsxqQ_qyoS5OzuRbmG",
+    "https://lh3.googleusercontent.com/d/1CtBecYRbq1lLctZ1phWPzm-0peI-ydEJ",
+    "https://lh3.googleusercontent.com/d/1xbrlnV2kss8RoJVij2sXPCBDiRA4VTeR",
+    "https://lh3.googleusercontent.com/d/1pdhj5ljbnEQrXfdgzwIZ9_4Q9RfMSkZf"
   ],
 
   // ==========================================
